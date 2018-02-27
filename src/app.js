@@ -11,6 +11,7 @@ import graphqlBatchHttpWrapper from 'koa-graphql-batch';
 import logger from 'koa-logger';
 import Router from 'koa-router';
 import { print } from 'graphql/language';
+import { koaPlayground } from 'graphql-playground-middleware';
 
 import { schema } from './schema';
 import { jwtSecret } from './config';
@@ -67,6 +68,12 @@ router.all('/graphql/batch', bodyParser(), graphqlBatchHttpWrapper(graphqlServer
 
 // graphql standard route
 router.all('/graphql', graphqlServer);
+router.all(
+  '/playground',
+  koaPlayground({
+    endpoint: '/graphql',
+  }),
+);
 
 app.use(logger());
 app.use(cors());
