@@ -22,14 +22,16 @@ const router = new Router();
 
 app.keys = jwtSecret;
 
-const graphqlSettingsPerReq = async (req) => {
-
+const graphqlSettingsPerReq = async req => {
   const { user } = await getUser(req.header.authorization);
-
-  const dataloaders = Object.keys(loaders).reduce((dataloaders, loaderKey) => ({
-    ...dataloaders,
-    [loaderKey]: loaders[loaderKey].getLoader(),
-  }), {});
+  const dataloaders = Object.keys(loaders).reduce(
+    // eslint-disable-next-line
+    (dataloaders, loaderKey) => ({
+      ...dataloaders,
+      [loaderKey]: loaders[loaderKey].getLoader(),
+    }),
+    {},
+  );
 
   return {
     graphiql: process.env.NODE_ENV !== 'production',
@@ -39,12 +41,12 @@ const graphqlSettingsPerReq = async (req) => {
       req,
       dataloaders,
     },
-    extensions: ({ document, variables, operationName, result }) => {
+    extensions: ({ document, variables, result }) => {
       console.log(print(document));
       console.log(variables);
       console.log(result);
     },
-    formatError: (error) => {
+    formatError: error => {
       console.log(error.message);
       console.log(error.locations);
       console.log(error.stack);
