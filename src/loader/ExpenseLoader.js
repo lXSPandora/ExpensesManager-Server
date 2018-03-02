@@ -13,6 +13,7 @@ type ExpenseType = {
   value: number,
   type: string,
   status: string,
+  dateToPay: string,
   user: string,
 };
 
@@ -23,6 +24,7 @@ export default class ExpenseType {
   value: number;
   type: string;
   status: string;
+  dateToPay: string;
   user: string;
 
   constructor(data: ExpenseType) {
@@ -32,6 +34,7 @@ export default class ExpenseType {
     this.value = data.value;
     this.type = data.type;
     this.status = data.status;
+    this.dateToPay = data.dateToPay;
     this.user = data.user;
   }
 }
