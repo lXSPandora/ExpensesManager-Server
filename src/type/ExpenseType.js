@@ -33,6 +33,10 @@ export default new GraphQLObjectType({
       type: ExpenseStatusEnum,
       resolve: ({ status }) => status,
     },
+    dateToPay: {
+      type: GraphQLString,
+      resolve: ({ dateToPay }) => dateToPay,
+    },
     user: {
       type: UserType,
       resolve: ({ user }, args, context) => UserLoader.load(context, user),
