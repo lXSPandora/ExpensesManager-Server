@@ -56,7 +56,7 @@ export const load = async (context: GraphQLContext, id: string): Promise<?Board>
 
 export const clearCache = ({ dataloaders }: GraphQLContext, id: string) => dataloaders.BoardLoader.clear(id.toString());
 
-export const loadUserBoards = (context: GraphQLContext, args: ConnectionArguments, user: string) => {
+export const loadUserExpenses = (context: GraphQLContext, args: ConnectionArguments, user: string) => {
   const Expenses = ExpenseModel.find({
     user,
   });
@@ -69,7 +69,7 @@ export const loadUserBoards = (context: GraphQLContext, args: ConnectionArgument
   });
 };
 
-export const loadBoards = async (context: GraphQLContext, args: ConnectionArguments) => {
+export const loadExpenses = async (context: GraphQLContext, args: ConnectionArguments) => {
   const Expenses = Expenses.find({});
 
   return connectionFromMongoCursor({
