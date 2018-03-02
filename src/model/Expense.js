@@ -22,6 +22,10 @@ const Schema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    dateToPay: {
+      type: String,
+      required: true,
+    },
     user: {
       type: ObjectId,
       required: true,
