@@ -25,7 +25,7 @@ export default new GraphQLObjectType({
     },
     myExpenses: {
       type: ExpenseType,
-      resolve: ({ _id }, args, context) => ExpenseLoader.loadUserBoards(context, args, _id),
+      resolve: ({ _id }, args, context) => ExpenseLoader.loadUserExpenses(context, args, _id),
     },
     active: {
       type: GraphQLBoolean,
